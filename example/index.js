@@ -3,7 +3,7 @@ import { BlockChain, Transaction, SmartContract, MinBlock } from "../src";
 
 Mhr.$use({
   _mount: {
-    BlockChain
+    BlockChain: BlockChain({ miningReward: 1, difficulty: 2 })
   }
 }).$use({
   chain: {
@@ -24,8 +24,8 @@ Mhr.$use({
     createTxns: [
       new Transaction({
         timestamp: Date.now(),
-        payerAddr: "wallet-0",
-        payeeAddr: "wallet-1",
+        payerAddr: "mint",
+        payeeAddr: "wallet-0",
         amount: 10
       })
     ]
@@ -36,12 +36,12 @@ setTimeout(() => {
   Mhr.$use({
     chain: {
       minBlock: new MinBlock({
-        minerAddress: "wallet-0",
+        minerAddress: "mint",
         txns: [
           new Transaction({
             payerAddr: "mint",
             payeeAddr: "wallet-0",
-            amount: 50
+            amount: 10
           })
         ]
       })

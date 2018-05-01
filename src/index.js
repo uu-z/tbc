@@ -49,7 +49,7 @@ export const SmartContract = ({
   maturityDate
 });
 
-export const BlockChain = data => ({
+export const BlockChain = ({ name, miningReward, difficulty }) => ({
   _hooks: {
     data: {
       $({ _key, _val, cp }) {
@@ -113,8 +113,8 @@ export const BlockChain = data => ({
   data: {
     name: "BlockChain",
     chain: [],
-    difficulty: 3,
-    miningReward: 50,
+    difficulty,
+    miningReward,
     Event: new EventEmitter()
   },
   methods: {
